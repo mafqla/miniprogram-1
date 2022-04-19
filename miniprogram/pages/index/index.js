@@ -4,32 +4,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    swiperItems: [
-      {
-        imageUrl: '', title: 'ModelS',
-        config: [
-          { title: "637", subtitle: "公里续航" },
-          { title: "637", subtitle: "公里续航" },
-          { title: "637", subtitle: "公里续航" }
-        ]
-      },
-      {
-        imageUrl: '', title: 'ModelY',
-        config: [
-          { title: "634", subtitle: "公里续航" },
-          { title: "634", subtitle: "公里续航" },
-          { title: "634", subtitle: "公里续航" }
-        ]
-      },
-      {
-        imageUrl: '', title: 'ModelT',
-        config: [
-          { title: "633", subtitle: "公里续航" },
-          { title: "633", subtitle: "公里续航" },
-          { title: "633", subtitle: "公里续航" }
-        ]
-      }
-    ],
+    swiperList: [],
     currentSwiperIndex: 0
   },
 
@@ -42,8 +17,25 @@ Page({
       currentSwiperIndex: current
     })
   },
-  onLoad(options) {
+  onLoad: function (options) {
+    this.db = wx.cloud.database()
+    this._loadSwiper()
+  },
 
+  _loadSwiper() {
+    this.db.collection('swiper').get().then(res => {
+      // console.log(res.data)
+      res.data.forEach((item, index) => {
+        item.config.forEach((item2, index2) => {
+          let splitItems = item2.split("|")
+          item.config[index2] = { title: splitItems[0], subtitle: splitItems[1] }
+        })
+        // res.data[index] = item
+      })
+      this.setData({
+        swiperList: res.data
+      })
+    })
   },
 
   /**
