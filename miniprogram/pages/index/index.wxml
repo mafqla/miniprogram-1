@@ -1,6 +1,6 @@
 <!--index.wxml-->
 <view class="page">
-  <view class="swiper" 	>
+  <view class="swiper">
     <swiper bindchange="onSwiperChange">
       <swiper-item wx:for="{{swiperList}}" wx:key="index">
         <image src="{{item.cover}}" mode="aspectFill"></image>
@@ -26,6 +26,47 @@
       <view class="swiper-dots">
         <view class="dot {{ currentSwiperIndex!==index || 'active'}} " wx:for="{{swiperList}}" wx:key="index"></view>
       </view>
+    </view>
+  </view>
+
+  <view class="magazine">
+    <view class="title">
+      T-Zone
+    </view>
+    <image class="cover" src=""></image>
+    <view class="name">2022年4月20日</view>
+  </view>
+  <view class="icon-banner">
+    <image class="banner-bg credit-card" src=""></image>
+    <view class="content">
+      <view class="title">
+        贷款计算器
+      </view>
+      <view class="subtitle">
+        定制我的金融方案
+      </view>
+    </view>
+  </view>
+  <view class="icon-banner">
+    <image class="banner-bg " src=""></image>
+    <view class="content">
+      <view class="title">
+        新手视频
+      </view>
+      <view class="subtitle">
+        观看视频
+      </view>
+    </view>
+  </view>
+
+  <view class="icon-box-area">
+    <view class="icon-box">
+      <image class="icon car" mode="widthFix" src="../../images/ic_clean_engry_policy.svg"></image>
+      <view class="title">新能源政策</view>
+    </view>
+    <view class="icon-box">
+      <image class="icon circle"  mode="widthFix" src="../../images/ic_traidin.svg"></image>
+      <view class="title">车辆置换</view>
     </view>
   </view>
 </view>
